@@ -57,6 +57,10 @@ module OmniAuth
         super
       end
 
+      def token_params
+        options.token_params.merge(options_for("token")).merge(pkce_token_params).merge(client_id: options.client_id).merge(client_secret: options.client_secret)
+      end
+
       # Hook used after response with code from provider. Used to prep token
       # request from provider.
       def callback_phase
